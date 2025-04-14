@@ -1,9 +1,10 @@
 #define OLC_PGE_APPLICATION
 
+#include <cmath>
 #include <iostream>
 #include "olcPixelGameEngine.h"
 
-// g++ -fopenmp main.cpp -luser32 -lgdi32 -lopengl32 -lgdiplus -lShlwapi -ldwmapi -lstdc++fs -static -std=c++17 -O3 -mavx2 -o main
+// g++ -fopenmp main.cpp -luser32 -lgdi32 -lopengl32 -lgdiplus -lShlwapi -ldwmapi -lstdc++fs -static -std=c++17 -O3 -o main
 
 class RayCaster : public olc::PixelGameEngine
 {
@@ -31,7 +32,7 @@ public:
         {
 			for (int y = 0; y < ScreenHeight(); y++)
             {
-				Draw(x, y, olc::Pixel(x % 255, y % 255, (x * y) % 255));
+				Draw(x, y, olc::Pixel(10000/(x + 1) % 255, 10000/(y + 1) % 255, 10000/(x + 1) % 255));
             }
         }
 		return true;
