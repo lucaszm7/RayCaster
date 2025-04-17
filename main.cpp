@@ -31,14 +31,14 @@ struct Map
 	int width;
 	int heigth;
 	int cellSize;
-	int stage[8][8] =  {0, 0, 0, 0, 0, 0, 0, 0,
-						0, 0, 0, 0, 0, 0, 0, 0,
-						0, 0, 0, 0, 0, 0, 0, 0,
-						0, 0, 0, 0, 0, 1, 1, 0,
-						0, 0, 0, 0, 0, 1, 1, 0,
-						0, 0, 0, 0, 0, 1, 1, 0,
-						0, 1, 0, 0, 0, 0, 0, 0,
-						0, 1, 0, 0, 0, 0, 0, 0,};
+	int stage[8][8] =  {1, 1, 1, 1, 1, 1, 1, 1,
+						1, 0, 0, 0, 0, 0, 0, 1,
+						1, 0, 0, 0, 0, 0, 0, 1,
+						1, 0, 0, 0, 0, 1, 1, 1,
+						1, 0, 0, 0, 0, 1, 1, 1,
+						1, 0, 0, 0, 0, 1, 1, 1,
+						1, 1, 0, 0, 0, 0, 0, 1,
+						1, 1, 1, 1, 1, 1, 1, 1,};
 
 	Map(int width, int heigth, int cellSize)
 		: width(width), heigth(heigth), cellSize(cellSize)
@@ -113,6 +113,10 @@ public:
 			// Calcula o seno e cosseno pra cada angulo do incremento do loop
 			olc::vf2d dir(cos(anguloLoop), sin(anguloLoop));
 			Ray ray(player.position, dir);
+
+			// olc::vf2d collisionPos = Collision(ray, map);
+			// float length = (collisionPos - ray.origin).mag();
+
 			olc::vf2d finalPosition = ray.origin + ray.direction * 500;
 			DrawLine(player.position.x, player.position.y, finalPosition.x, finalPosition.y, olc::BLUE);
 		}
