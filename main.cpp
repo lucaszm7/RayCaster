@@ -21,7 +21,7 @@ struct Player
 
 	void drawPlayer(olc::PixelGameEngine* ptr)
 	{
-		ptr->FillCircle(position.x, position.y, raio, olc::RED);
+		ptr->FillCircle(position.x, position.y, raio, olc::MAGENTA);
 	}
 };
 
@@ -31,15 +31,39 @@ struct Map
 	int width;
 	int heigth;
 	int cellSize;
-	int stage[8][8] =  {1, 1, 1, 1, 1, 1, 1, 1,
-						1, 0, 0, 0, 0, 0, 0, 1,
-						1, 0, 0, 0, 0, 0, 0, 1,
-						1, 0, 0, 0, 0, 1, 1, 1,
-						1, 0, 0, 0, 0, 1, 1, 1,
-						1, 0, 0, 0, 0, 1, 1, 1,
-						1, 1, 0, 0, 0, 0, 0, 1,
-						1, 1, 1, 1, 1, 1, 1, 1,};
-
+	int stage[32][32] =    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}; 
+						
 	Map(int width, int heigth, int cellSize)
 		: width(width), heigth(heigth), cellSize(cellSize)
 	{}
@@ -66,7 +90,7 @@ public:
 	Map map;
 
     RayCaster()
-	: player(100, 100, 100, 5), map(8, 8, 64)
+	: player(100, 100, 100, 5), map(32, 32, 29)
 	{
 		sAppName = "Ray Caster";
 	}
@@ -79,7 +103,7 @@ public:
 
 	bool OnUserUpdate(float fElapsedTime) override
 	{	
-		Clear(olc::BLACK);
+		Clear(olc::VERY_DARK_GREY);
 		olc::vi2d pos = GetMousePos();
 
 		for(int y = 0; y < map.heigth; y++)
@@ -88,8 +112,8 @@ public:
 			{
 				if(map[y][x] == 1)
 				{
-					FillRect(x * map.cellSize, y * map.cellSize, map.cellSize, map.cellSize, olc::WHITE);
-				}
+					FillRect(x * map.cellSize, y * map.cellSize, map.cellSize, map.cellSize, olc::VERY_DARK_BLUE);
+				}                                  
 			}
 		}
 
@@ -102,25 +126,34 @@ public:
 		float hipotenusa = sqrtf(powf((pos.x - player.position.x), 2) + powf((player.position.y - pos.y), 2));
 		// Calcula os seno e cosseno
 		float anguloYsin = (pos.y - player.position.y)/hipotenusa;
-		float anguloXcos = (pos.x - player.position.x)/hipotenusa; 
+		float anguloXcos = (pos.x - player.position.x)/hipotenusa;
 
 		// Acha o angulo entre jogador e mouse usando a funçao atan2()
 		float angulo = atan2f(anguloYsin, anguloXcos);
 		// Ideia inicializar o loop subtraindo 45 graus do angulo achado com atan2() e fazer o loop ate completar 90 graus
 		// Tava dando erro no loop pq a variavel angulo que checava o fim do loop era a mesma que incrementava, entao ficava infinito
-		for(float anguloLoop = angulo - (PI/4); anguloLoop < angulo + (PI/4); anguloLoop += 0.1)
+		for(float anguloLoop = angulo - (PI/4); anguloLoop < angulo + (PI/4); anguloLoop += 0.01)
 		{
 			// Calcula o seno e cosseno pra cada angulo do incremento do loop
 			olc::vf2d dir(cos(anguloLoop), sin(anguloLoop));
 			Ray ray(player.position, dir);
-
 			// olc::vf2d collisionPos = Collision(ray, map);
 			// float length = (collisionPos - ray.origin).mag();
+			float Ynearest, Xnearest;
+			Ynearest = map.cellSize - (map.cellSize - ((int)(player.position.y / map.cellSize) * map.cellSize));
+			Xnearest = Ynearest / anguloLoop;
+			olc::vi2d cell((Xnearest / map.cellSize), (Ynearest / map.cellSize));
+			float distance = 500;
+			if(map[cell.x][cell.y] == 1){
+				distance = sqrt(cell.x * cell.x + cell.y * cell.y);
+			}
+			float Ynext = map.cellSize;
+			float Xnext = Ynext / anguloLoop;
 
-			olc::vf2d finalPosition = ray.origin + ray.direction * 500;
-			DrawLine(player.position.x, player.position.y, finalPosition.x, finalPosition.y, olc::BLUE);
+			olc::vf2d finalPosition = ray.origin + ray.direction * distance;
+
+			DrawLine(player.position.x, player.position.y, finalPosition.x, finalPosition.y, olc::YELLOW);
 		}
-		DrawLine(player.position.x, player.position.y, pos.x, pos.y, olc::RED);
 
 		if (GetKey(olc::W).bHeld) player.position.y -= player.speed * fElapsedTime;
     	if (GetKey(olc::S).bHeld) player.position.y += player.speed * fElapsedTime;
@@ -135,7 +168,7 @@ public:
 int main(int argc, char** argv)
 {
     RayCaster application;
-    if (application.Construct(512, 512, 1, 1))
+    if (application.Construct(928, 928, 1, 1))
     {
         application.Start();
     }
